@@ -57,10 +57,16 @@ cat index.html
 
 ![screenshot](./2/a3.PNG)
 
-### (b) ###
+### (b) ###  
+docker cp my-nginx://usr//share//nginx//html//index.html index.html
+ls && cat index.html  
 ![screenshot](./2/b.PNG)
 
 ### (c) ###
+docker stop my-nginx  
+docker rm my-nginx  
+docker run -d -p 80:80 --name my-nginx nginx:1.23.3-alpine
+#### We can see that now the page is not changed. That is of course normal because the changes we did on it before were inside the container which we later removed so now the changes are lost. The page we loaded now is from the new container we pulled from docker hub and it has the default html text it ships with. ####
 ![screenshot](./2/c1.PNG)
 
 
