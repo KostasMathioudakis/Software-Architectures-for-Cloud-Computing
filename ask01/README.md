@@ -127,5 +127,5 @@ docker push kostasmathioudakis/cs548-nginx
 
 ## Exercise 5 ##
 #### The yaml file is in '/.github/workflows'. ####
-####In order to test if it works correctly i commited some changes in the github then i went to dockerhub and saw that the image was updated (shown from last modified tag which said 3mins ago) so i pulled the image locally to my computer and i opened a container with it and it works... ####
+In order to test if it works correctly i commited some changes in the github then i went to dockerhub and saw that the image was updated (shown from last modified tag which said 3mins ago) so i pulled the image locally to my computer and i opened a container with it and it works...
 
