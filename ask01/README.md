@@ -1,4 +1,4 @@
-# Exercise 1 #
+# Exercise Set 1 #
 # Kostas Mathioudakis CSD3982 #
 
 ## Exercise 1 ##
@@ -72,3 +72,19 @@ docker run -d -p 80:80 --name my-nginx nginx:1.23.3-alpine
 
 
 ![screenshot](./2/c2.PNG)
+
+## Exercise 3 ##
+1. `1_installing_hugo.PNG`: Provides instructions for installing Hugo on a computer or server.
+![Installing Hugo](3/1_installing_hugo.PNG)
+
+2. `2_git_stuff.PNG`: Covers the basics of using Git with Hugo, such as initializing a repository, committing changes, and pushing to a remote repository.
+![Git and Hugo](3/2_git_stuff.PNG)
+
+3. `3_make.PNG`: Likely provides information on how to use the `make` command to build a Hugo site.
+![Using Make with Hugo](3/3_make.PNG)
+
+4. `4_container.PNG`: May cover how to use Docker or another containerization tool with Hugo.
+![Containerizing Hugo](3/4_container.PNG)
+
+5. `5_localhost.PNG`: Provides information on how to test a Hugo site locally using a localhost server.
+![Testing Hugo Locally](3/5_localhost.PNG)
