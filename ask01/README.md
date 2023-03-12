@@ -84,11 +84,11 @@ git submodule init
 dit submodule update  
 ![Git and Hugo](3/2_git_stuff.PNG)
 
-3. `3_make.PNG`: Likely provides information on how to use the `make` command to build a Hugo site.
+3. `3_make.PNG`: make
 ![Using Make with Hugo](3/3_make.PNG)
 
-4. `4_container.PNG`: May cover how to use Docker or another containerization tool with Hugo.
+4. `4_container.PNG`: docker run -d -p 80:80 --name hugo nginx:1.23.3
 ![Containerizing Hugo](3/4_container.PNG)
 
-5. `5_localhost.PNG`: Provides information on how to test a Hugo site locally using a localhost server.
+5. `5_localhost.PNG`: It works !!!
 ![Testing Hugo Locally](3/5_localhost.PNG)
