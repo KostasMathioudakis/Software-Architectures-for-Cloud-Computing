@@ -2,21 +2,21 @@
 # Kostas Mathioudakis CSD3982 #
 
  ## 1 ##
-  ####(a)  
+  ####(a)####  
   docker pull nginx:1.23.3  
   docker pull nginx:1.23.3-alpine  
  ![screenshot](./1/a.PNG)
-  ####(b)  
+  ####(b)####  
  ![screenshot](./1/b.PNG)
-  ####(c)  
+  ####(c) #### 
  ![screenshot](./1/c.PNG)
-  ####(d)  
+  ####(d)  ####
  ![screenshot](./1/d.PNG)
-  ####(e)  
+  ####(e)  ####
  ![screenshot](./1/e.PNG)
-  ####(f)  
+  ####(f)  ####
  ![screenshot](./1/f.PNG)
-  ####(g)  
+  ####(g)  ####
  ![screenshot](./1/g.PNG)
-  ####(h)  
+  ####(h)  ####
  ![screenshot](./1/h.PNG)
