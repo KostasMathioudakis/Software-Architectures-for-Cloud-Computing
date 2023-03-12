@@ -4,4 +4,4 @@
   a)  docker pull nginx:1.23.3
       docker pull nginx:1.23.3-alpine
       <br>
-      ![ss](ask01/1/a.PNG)
+      ![ss](cs548/ask01/1/a.PNG)
