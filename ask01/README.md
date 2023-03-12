@@ -115,10 +115,14 @@ docker push kostasmathioudakis/cs548-nginx
 ![screenshot](./4/3_docker_push.PNG)
 
 `4_dockerhub.PNG`
-![screenshot](./4/4_dockerhub.PNG)
+![screenshot](./4/4_dockerhub.PNG)  
 
+### (c) ###
+#### As we can see below the initial image was 142MB but the image we created is 341MB. That is because we downloaded tools wee needed in it like 'curl' 'git' 'make'. To make the image smaller we need to use as less layers as possible. We could have made it smaller than it is but i want it to be readable too. ####
 `5_docker_images.PNG`
 ![screenshot](./4/5_docker_images.PNG)
 
 `6_docker_run_image.PNG`
 ![screenshot](./4/6_docker_run_image.PNG)
+
+
