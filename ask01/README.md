@@ -74,21 +74,26 @@ docker run -d -p 80:80 --name my-nginx nginx:1.23.3-alpine
 ![screenshot](./2/c2.PNG)
 
 ## Exercise 3 ##
-1. `1_installing_hugo.PNG`: cp /mnt/c/....../hugo.deb ./   
-    sudo dpkg -i ./hugo.deb 
+1. `1_installing_hugo.PNG`:   
+cp /mnt/c/....../hugo.deb ./   
+sudo dpkg -i ./hugo.deb 
 ![Installing Hugo](3/1_installing_hugo.PNG)
 
-2. `2_git_stuff.PNG`: git clone https://github.com/KostasMathioudakis/hy548.git  
+2. `2_git_stuff.PNG`:   
+git clone https://github.com/KostasMathioudakis/hy548.git  
 cd hy548  
 git submodule init  
 dit submodule update  
 ![Git and Hugo](3/2_git_stuff.PNG)
 
-3. `3_make.PNG`: make
+3. `3_make.PNG`:   
+make
 ![Using Make with Hugo](3/3_make.PNG)
 
-4. `4_container.PNG`: docker run -d -p 80:80 --name hugo nginx:1.23.3
+4. `4_container.PNG`:   
+docker run -d -p 80:80 --name hugo nginx:1.23.3
 ![Containerizing Hugo](3/4_container.PNG)
 
-5. `5_localhost.PNG`: It works !!!
+5. `5_localhost.PNG`:   
+It works !!!
 ![Testing Hugo Locally](3/5_localhost.PNG)
