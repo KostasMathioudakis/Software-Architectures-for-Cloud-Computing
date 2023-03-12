@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      #Debugging the secrets ReeEeeEeeeEe
+      - name: Debug DOCKERHUB_USERNAME
+        run: echo ${{ secrets.DOCKERHUB_USERNAME }}
+      - name: Debug GITHUB_TOKEN
+        run: echo ${{ secrets.GITHUB_TOKEN }}
+        
       - name: Checkout code
         uses: actions/checkout@v2
 
