@@ -126,5 +126,5 @@ docker push kostasmathioudakis/cs548-nginx
 ![screenshot](./4/6_docker_run_image.PNG)
 
 ## Exercise 5 ##
-#### The yaml file is in '.github/workflows' ####
+#### The yaml file is in '/.github/workflows' ####
 
