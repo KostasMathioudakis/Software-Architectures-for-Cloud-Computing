@@ -97,3 +97,25 @@ docker run -d -p 80:80 --name hugo nginx:1.23.3
 5. `5_localhost.PNG`:   
 It works !!!
 ![Testing Hugo Locally](3/5_localhost.PNG)
+
+## Exercise 4 ##  
+`0_docker_file.PNG`
+![screenshot](./4/0_docker_file.PNG)
+
+`1_docker_login.PNG`
+![screenshot](./4/1_docker_login.PNG)
+
+`2_docker_build.PNG`
+![screenshot](./4/2_docker_build.PNG)
+
+`3_docker_push.PNG`
+![screenshot](./4/3_docker_push.PNG)
+
+`4_dockerhub.PNG`
+![screenshot](./4/4_dockerhub.PNG)
+
+`5_docker_images.PNG`
+![screenshot](./4/5_docker_images.PNG)
+
+`6_docker_run_image.PNG`
+![screenshot](./4/6_docker_run_image.PNG)
