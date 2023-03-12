@@ -1,4 +1,4 @@
-@author Kostas Mathioudakis CSD3982
+<h1> @author Kostas Mathioudakis CSD3982 </h1>
 # CS548
 # Quote of the year: "French exchange variation players should be banned from the game." ~ Me
 
