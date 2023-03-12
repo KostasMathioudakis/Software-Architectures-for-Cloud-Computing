@@ -99,15 +99,18 @@ It works !!!
 ![Testing Hugo Locally](3/5_localhost.PNG)
 
 ## Exercise 4 ##  
+### (a) ###
 `0_docker_file.PNG`
-![screenshot](./4/0_docker_file.PNG)
+![screenshot](./4/0_docker_file.PNG)  
 
-`1_docker_login.PNG`
-![screenshot](./4/1_docker_login.PNG)
-
+### (b) ###
+docker login  
+`1_docker_login.PNG`  
+![screenshot](./4/1_docker_login.PNG)  
+docker build -t kostasmathioudakis/cs548-nginx .  
 `2_docker_build.PNG`
-![screenshot](./4/2_docker_build.PNG)
-
+![screenshot](./4/2_docker_build.PNG)  
+docker push kostasmathioudakis/cs548-nginx  
 `3_docker_push.PNG`
 ![screenshot](./4/3_docker_push.PNG)
 
