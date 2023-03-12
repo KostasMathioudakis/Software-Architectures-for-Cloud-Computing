@@ -60,6 +60,7 @@ cat index.html
 ### (b) ###  
 docker cp my-nginx://usr//share//nginx//html//index.html index.html
 ls && cat index.html  
+#### We use the docker cp command to copy stuff in and out of the container then i just used the 'cat' command to output the file after i copied it on the local machine. ####
 ![screenshot](./2/b.PNG)
 
 ### (c) ###
