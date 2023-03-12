@@ -43,3 +43,20 @@ docker ps -a
 ![screenshot](./1/h.PNG)
 
 ## Exercise 2 ##
+### a ###
+![screenshot](./2/a.PNG)
+
+### a2 ###
+![screenshot](./2/a2.PNG)
+
+### a3 ###
+![screenshot](./2/a3.PNG)
+
+### b ###
+![screenshot](./2/b.PNG)
+
+### c1 ###
+![screenshot](./2/c1.PNG)
+
+### c2 ###
+![screenshot](./2/c2.PNG)
