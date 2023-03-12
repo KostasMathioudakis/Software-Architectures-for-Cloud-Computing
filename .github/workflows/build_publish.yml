@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           tags: kostasmathioudakis/cs548-nginx:latest
-          file: ./ask01/Dockerfile
+          file: ./Dockerfile
           push: true
 
       - name: Image digest
