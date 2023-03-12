@@ -41,3 +41,5 @@ docker stop (id)
 docker rm (id)  
 docker ps -a  
 ![screenshot](./1/h.PNG)
+
+## Exercise 2 ##
