@@ -43,7 +43,16 @@ docker ps -a
 ![screenshot](./1/h.PNG)
 
 ## Exercise 2 ##
-### (a) ###
+### (a) ###  
+docker run -d -p 80:80 --name my-nginx nginx:1.23.3-alpine  
+docker exec -it my-nginx /bin/sh  
+cd /usr/share/nginx/html  
+cat index.html  
+#### We ran the container with port forwarding to forward it on our machine. 
+Then we opened a shell session in it and changed the contexts of 'index.html' in the '/usr/share/nginx/html' location
+and added "MY" to where we had to.  
+Below is a screenshot from the local machine where we curl and see the changes  
+And below that is another screenshot from the browser  ####
 ![screenshot](./2/a.PNG)
 
 
