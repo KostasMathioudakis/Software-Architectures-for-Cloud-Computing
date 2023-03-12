@@ -74,10 +74,14 @@ docker run -d -p 80:80 --name my-nginx nginx:1.23.3-alpine
 ![screenshot](./2/c2.PNG)
 
 ## Exercise 3 ##
-1. `1_installing_hugo.PNG`: Provides instructions for installing Hugo on a computer or server.
+1. `1_installing_hugo.PNG`: cp /mnt/c/....../hugo.deb ./   
+    sudo dpkg -i ./hugo.deb 
 ![Installing Hugo](3/1_installing_hugo.PNG)
 
-2. `2_git_stuff.PNG`: Covers the basics of using Git with Hugo, such as initializing a repository, committing changes, and pushing to a remote repository.
+2. `2_git_stuff.PNG`: git clone https://github.com/KostasMathioudakis/hy548.git  
+cd hy548  
+git submodule init  
+dit submodule update  
 ![Git and Hugo](3/2_git_stuff.PNG)
 
 3. `3_make.PNG`: Likely provides information on how to use the `make` command to build a Hugo site.
