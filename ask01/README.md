@@ -12,7 +12,7 @@ docker image ls
 ![screenshot](./1/b.PNG)
 
 ### (c) ### 
-docker run -d -p 80:80 nginx:1.23.3-alpine
+docker run -d -p 80:80 nginx:1.23.3-alpine  
 curl http://localhost
 #### The answer of curl is the html file being hosted by the container in the localhost ####  
 ![screenshot](./1/c.PNG)
