@@ -1,0 +1,183 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scripts
+data:
+  build_website.sh: |
+    #!/bin/bash
+    apt-get update
+    apt-get install -y git curl make
+    curl -L https://github.com/gohugoio/hugo/releases/download/v0.111.2/hugo_extended_0.111.2_linux-amd64.deb -o hugo.deb 
+    apt install ./hugo.deb      
+    git clone  https://github.com/chazapis/hy548.git /configmap2/hy548
+    cd /configmap2/hy548
+    git submodule init
+    git submodule update
+    make 
+    cd ..
+    mkdir html
+    cp -R hy548/html/public/* html
+    echo 'Building Website:'
+    echo 'Done'
+  update.sh: |
+    #!/bin/bash
+    apt-get update
+    apt-get install -y git
+    cd /configmap2/hy548
+    git status
+    if [[ -n "$(git status --porcelain)" ]]; then
+      echo 'Changes were made. Updating !' 
+      git pull
+      make
+      cd ..
+      mkdir -p html
+      cp -R hy548/html/public/* html
+    else
+      echo 'No changes'
+    fi
+  check.sh: |
+    #!/bin/sh
+    until [ -f /configmap2/html/index.html ]
+    do
+
+      sleep 10
+      echo "File not found..."
+      echo "Waiting..."
+    done
+    echo "File Found!"
+    
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ubuntu
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: ubuntu
+        image: ubuntu:20.04
+        command: [ "/bin/bash", "-c", "bash /configmap/build_website.sh"]
+        volumeMounts:
+        - mountPath: /configmap2
+          name: pd
+        - mountPath: /configmap
+          name: script-volume
+      volumes:
+      - name: pd
+        persistentVolumeClaim:
+          claimName: pvc
+      - name: script-volume
+        configMap:
+          name: scripts
+          defaultMode: 0777
+
+---
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: job-repeating
+spec:
+  schedule: "15 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: ubuntu-cronjob
+            image: ubuntu:20.04
+            command: [ "/bin/bash", "-c", " bash /configmap/update.sh"]
+            volumeMounts:
+            - mountPath: /configmap2
+              name: pd
+            - mountPath: /configmap
+              name: script-volume
+          volumes:
+          - name: pd
+            persistentVolumeClaim:
+             claimName: pvc
+          - name: script-volume
+            configMap:
+              name: scripts
+              defaultMode: 0777
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      initContainers:
+      - name: init-busybox
+        image: busybox
+        command: ['sh', '-c', "./configmap/check.sh"]
+        volumeMounts:
+        - mountPath: /configmap/check.sh
+          name: script-volume
+          subPath: check.sh
+        - mountPath: /configmap2
+          name: pd
+      containers:
+      - name: nginx
+        image: nginx:1.23.3-alpine
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/share/nginx
+          name: pd
+      volumes:
+      - name: script-volume
+        configMap:
+         name: scripts
+         defaultMode: 0777
+      - name: pd
+        persistentVolumeClaim:
+          claimName: pvc
+

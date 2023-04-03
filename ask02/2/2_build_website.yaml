@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: install-dependencies-script
+data:
+  install-dependencies.sh: |
+    #!/bin/sh
+    apt-get update
+    apt-get install -y git curl make
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: build-website-script
+data:
+  build-website.sh: |
+    #!/bin/sh
+    git clone  https://github.com/chazapis/hy548.git
+    cd hy548
+    git submodule init
+    git submodule update
+    curl -L https://github.com/gohugoio/hugo/releases/download/v0.111.2/hugo_extended_0.111.2_linux-amd64.deb -o hugo.deb 
+    apt install ./hugo.deb
+    make
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: build-website-job
+spec:
+  template:
+    spec:
+      volumes:
+        - name: install-dependencies-script
+          configMap:
+            name: install-dependencies-script
+        - name: build-website-script
+          configMap:
+            name: build-website-script
+      containers:
+        - name: build-website
+          image: ubuntu:20.04
+          command: ["/bin/bash", "-c", 
+                    "bash /scripts/install-dependencies.sh && bash /scripts/build-website.sh"]
+          volumeMounts:
+            - name: install-dependencies-script
+              mountPath: /scripts/install-dependencies.sh
+              subPath: install-dependencies.sh
+            - name: build-website-script
+              mountPath: /scripts/build-website.sh
+              subPath: build-website.sh
+      restartPolicy: Never
+  backoffLimit: 4

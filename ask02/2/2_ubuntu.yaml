@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: build-website-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: build-website
+        image: ubuntu:20.04
+        command: ["/bin/bash"]
+        args:
+        - -c
+        - |
+          apt update && apt install -y git curl
+          && git clone --recurse-submodules https://github.com/chazapis/hy548.git
+          && curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.90.0/hugo_extended_0.90.0_Linux-64bit.deb
+          && dpkg -i hugo.deb && rm hugo.deb
+          && cd hy548 && hugo --minify
+        volumeMounts:
+        - name: script-volume
+          mountPath: /script
+          readOnly: true
+      restartPolicy: Never
+      volumes:
+      - name: script-volume
+        configMap:
+          name: build-website-script
+  backoffLimit: 4
