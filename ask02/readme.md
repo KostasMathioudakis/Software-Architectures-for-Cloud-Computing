@@ -181,3 +181,5 @@ Last but not least i checked that the cronjob runs as it should every 3 minutes:
 ![](./3/10_cronjob.PNG)
 
 ## Exercise 4
+
+`/4/deployment.yaml`
