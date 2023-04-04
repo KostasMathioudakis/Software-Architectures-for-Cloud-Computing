@@ -256,4 +256,4 @@ $kubectl port-forward service/nginx-service 8080:80
 
 Checking that the cronjob is also working as it should using the minikube dashboard.
 
-![](/4/10_cronjob.PNG)
+![](./4/10_cronjob.PNG)
