@@ -183,3 +183,77 @@ Last but not least i checked that the cronjob runs as it should every 3 minutes:
 ## Exercise 4
 
 `/4/deployment.yaml`
+
+This YAML file defines a Kubernetes deployment to build and serve a static website using Nginx. It includes a Service, PersistentVolumeClaim, ConfigMap, Job, CronJob, and Deployment. The Nginx Pods are embedded in a Deployment, and an init container is used to start the Pods when the web page is finished building. A Service is also added to the manifest.
+
+Service
+
+The Service, nginx-service, is used to expose the Nginx Deployment to the internal network within the Kubernetes cluster. The Service selects all Pods with the label `app: nginx` and listens on port 80.
+
+![](./4/1_service.PNG)
+
+PersistentVolumeClaim
+
+The PersistentVolumeClaim, `pvc`, is used to request a 1Gi storage volume with `ReadWriteOnce` access mode. The storage is used to store the website files and share them among the containers.
+
+![](./4/2_pvc.png)
+
+ConfigMap
+
+The ConfigMap, scripts, stores three shell scripts used in the Job, CronJob, and Deployment:
+
+`build_website.sh`: This script installs the required dependencies, clones the website repository, builds the website using Hugo, and copies the generated files to the html directory.
+`update.sh`: This script checks for changes in the Git repository. If changes are detected, it pulls the latest changes, rebuilds the website, and copies the updated files to the html directory.
+`check.sh`: This script waits for the index.html file to be present in the html directory before allowing the Nginx Pods to start.
+Job
+
+![](./4/3_configmap.PNG.png)
+
+Job
+
+The Job, `ubuntu`, is responsible for building the website using the `build_website.sh` script. The Job uses an Ubuntu container and mounts the PersistentVolumeClaim and the ConfigMap containing the scripts.
+
+![](./4/4_ubuntu.PNG)
+
+CronJob
+
+The CronJob, job-repeating, is responsible for running the `update.sh` script periodically (every day at 2:15 AM) to update the website if there are any changes in the Git repository. The CronJob uses an Ubuntu container and mounts the PersistentVolumeClaim and the ConfigMap containing the scripts.
+
+![](./4/5_cronjob.PNG)
+
+
+Deployment
+
+The Deployment, `nginx-deployment` , manages the Nginx Pods that serve the website. It uses an init container to run the `check.sh` script before starting the Nginx container. The init container ensures that the `index.html` file is present in the html directory before the Nginx container starts. The Deployment mounts the PersistentVolumeClaim and the ConfigMap containing the scripts.
+
+![](/4/6_deployment.PNG)
+
+### Execution:
+
+First I run the manifest.
+
+```bash
+$kubectl apply -f .\deployment.yaml
+```
+
+![](/4/7_kubectl_apply.PNG)
+
+Then i check the logs of the ubuntu job to see if the website is being built with hugo.
+
+![](/4/8_ubuntu_hugo_build.PNG)
+
+Then i check if the service for nginx is running and then i port forward and open the site in my browser.
+
+```bash
+$kubectl get services
+```
+
+```bash
+$kubectl port-forward service/nginx-service 8080:80
+```
+
+![](/4/9_port_forward_service.PNG)
+
+Checking that the cronjob is also working as it should using the minikube dashboard.
+
+![](/4/10_cronjob.PNG)
