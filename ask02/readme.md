@@ -226,7 +226,7 @@ Deployment
 
 The Deployment, `nginx-deployment` , manages the Nginx Pods that serve the website. It uses an init container to run the `check.sh` script before starting the Nginx container. The init container ensures that the `index.html` file is present in the html directory before the Nginx container starts. The Deployment mounts the PersistentVolumeClaim and the ConfigMap containing the scripts.
 
-![](/4/6_deployment.PNG)
+![](./4/6_deployment.PNG)
 
 ### Execution:
 
@@ -236,11 +236,11 @@ First I run the manifest.
 $kubectl apply -f .\deployment.yaml
 ```
 
-![](/4/7_kubectl_apply.PNG)
+![](./4/7_kubectl_apply.PNG)
 
 Then i check the logs of the ubuntu job to see if the website is being built with hugo.
 
-![](/4/8_ubuntu_hugo_build.PNG)
+![](./4/8_ubuntu_hugo_build.PNG)
 
 Then i check if the service for nginx is running and then i port forward and open the site in my browser.
 
@@ -252,7 +252,7 @@ $kubectl get services
 $kubectl port-forward service/nginx-service 8080:80
 ```
 
-![](/4/9_port_forward_service.PNG)
+![](./4/9_port_forward_service.PNG)
 
 Checking that the cronjob is also working as it should using the minikube dashboard.
 
