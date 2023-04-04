@@ -7,6 +7,7 @@
 Here is the yaml file:
 
 `/1/1_nging_yaml`
+
 ![](./1/1_yaml_file.PNG)
 
 ```bash
