@@ -7,3 +7,6 @@ Quote of the year: "French exchange variation players should be banned from the 
 
 ## Exercise Set 2: ##      
 ### Provided screenshots and yaml files at ./ask02 folder also a readme file as a report. ###
+
+## Exercise Set 3: ##      
+### Provided screenshots and yaml files at ./ask03 folder also a readme file as a report. ###
