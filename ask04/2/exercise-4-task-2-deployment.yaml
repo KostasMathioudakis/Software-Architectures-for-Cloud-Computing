@@ -1,0 +1,52 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: greetings-reader
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-greetings-global
+subjects:
+- kind: ServiceAccount
+  name: greetings-manager
+  namespace: default
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: greetings-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: greetings-manager
+  namespace: default
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exercise-4-task2
+  labels:
+    app: exercise-4-task2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exercise-4-task2
+  template:
+    metadata:
+      labels:
+        app: exercise-4-task2
+    spec:
+      serviceAccountName: greetings-manager
+      containers:
+      - name: exercise-4-task-2-deployment
+        image: kostasmathioudakis/hw4-2
+        ports:
+        - containerPort: 80
+

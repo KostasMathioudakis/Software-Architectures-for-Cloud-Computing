@@ -1,0 +1,26 @@
+apiVersion: hy548.csd.uoc.gr/v1
+kind: Fruit
+metadata:
+  name: apple
+spec:
+  origin: Krousonas
+  count: 3
+  grams: 980 
+---
+apiVersion: hy548.csd.uoc.gr/v1
+kind: Fruit
+metadata:
+  name: banana
+spec:
+  origin: Jamaica
+  count: 1
+  grams: 420 
+---
+apiVersion: hy548.csd.uoc.gr/v1
+kind: Fruit
+metadata:
+  name: watermelon
+spec:
+  origin: Selino
+  count: 2
+  grams: 3780 
