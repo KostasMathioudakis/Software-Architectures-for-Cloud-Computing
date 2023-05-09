@@ -1,11 +1,11 @@
 # Kostas Mathioudakis CSD3982
-# Exercise set: 3
+# Exercise set: 4
 
 ***
 
 ## Exercise 1
 
-First start minikube withe `kubernetes-version=1.22.4` :
+First start minikube with `kubernetes-version=1.22.4` :
 
 ```bash
 $   minikube start --kubernetes-version=1.22.4
